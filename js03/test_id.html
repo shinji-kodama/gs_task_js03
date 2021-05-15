@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/destyle.css">
+    <link rel='icon' href='img/door01.png'>
+    <style type="text/css">
+    
+    body {
+        width: auto;
+        height:800px;
+        position: relative;
+        top: 50px;
+        margin-left:auto;
+        margin-right: auto;
+        background-color: black;
+        /* border:white solid 1px; */
+    }
+     button{
+         width: 50px;
+         height: 30px;
+         text-align:center;
+         background-color: #fff;
+         border: solid 1px black;
+     }
+
+     p {
+         color:white;
+     }
+
+     input{
+         background-color: #fff;
+     }
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="bl">
+        <input type="text" id="name">
+        <input type="text" id="user_id">
+        <button id="send">登録</button>
+        <button id="send2">変更</button>
+        <span id="AAA"></span>
+        <span id="BBB"></span>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--** 以下Firebase **-->
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase.js"></script>
+    
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    
+<script>
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyApIYJ-VOv5OIIgCorF5OrJngewgn85LQU",
+    authDomain: "gslab11-aa564.firebaseapp.com",
+    projectId: "gslab11-aa564",
+    storageBucket: "gslab11-aa564.appspot.com",
+    messagingSenderId: "209017578737",
+    appId: "1:209017578737:web:90b7acab588bfba6a57550"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+class Person {
+    constructor(name, age, height, weight){
+        this.name = name; this.age = age; this.height = height;
+        this.weight = weight; this.bmi = weight / Math.pow(height, 2)* 10000 ;
+    }
+}
+const db = firebase.database();
+const room = 'test_room/'
+
+
+$('#send').on('click', function(){
+    const name = $('#name').val();
+    const user_id = $('#user_id').val();
+    const int_a = Math.floor(Math.random() * 20 + 10)
+    const int_h = Math.floor(Math.random() * 40 + 140)
+    const int_w = Math.floor(Math.random() * 50 + 30)
+
+    const new_person = new Person(name, int_a, int_h, int_w)
+
+    if(user_id){
+        new_person['id'] = user_id
+        db.ref(room+user_id).set(new_person)
+    }else{
+        const newKey = db.ref(room).push(new_person).key
+        db.ref(room + newKey + '/id').set(newKey)
+        $('#AAA').html(`<p>あなたのIDは${newKey}です</p>`)
+    }
+});
+
+$('#send2').on('click', function(){
+    db.ref(room).once('value', function (data) {
+        const v = data.val();
+        const k = data.key;
+
+        const change_id = '-M_dB1xMwfMypO6QSPSB'    // ここは入力させる
+        const new_id    = 'ahahaaaf'                // ここも入力させる
+
+        if(!v[new_id]){
+            v[new_id] = v[change_id]
+            v[new_id].id = new_id 
+
+            const updates = {};
+            updates[room] = v;
+            db.ref().update(updates);
+            db.ref(room + change_id).set(null);
+        }
+    })
+})
+
+
+        
+
+</script>
+</body>
+</html>

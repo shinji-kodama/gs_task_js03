@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/destyle.css">
+    <link rel='icon' href='img/door01.png'>
+    <style type="text/css">
+    
+    body {
+        width: auto;
+        height:800px;
+        position: relative;
+        top: 50px;
+        margin-left:auto;
+        margin-right: auto;
+        background-color: black;
+        /* border:white solid 1px; */
+    }
+
+    .imgbox {
+        width: 300px;
+        /* border: solid white 1px; */
+        margin-left: auto;
+        margin-right:auto;
+        margin-top: 50px;
+    }
+
+    img{
+        width: 100%;
+        height: 100%;
+
+    }
+
+    h1 {
+        margin-top:20px;
+        margin-bottom: 10px;
+        color: white;
+        text-align: center;
+        font-size:24px;
+
+        font-family:fantasy;
+    }
+
+    h2 {
+        margin-top:40px;
+        margin-bottom: 20px;
+        color: white;
+        text-align: center;
+        /* font-size:24px; */
+    }
+
+    #un {
+        width: 160px;
+        height: 20px;
+        background-color: white;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+    .box01 {
+        width: auto;
+        height: 60px;
+        position:relative;
+        top: 0%;
+        transform: translateY(0);
+
+        /* border:solid white 1px; */
+        
+        display: flex;
+        justify-content: space-around;
+    }
+
+    button{
+        position: relative;
+        top:50%;
+        transform: translateY(-50%);
+
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        background: linear-gradient(150deg, rgb(255, 255, 255), rgb(181, 181, 181));
+        color: black;
+        border: solid black 1px;
+        border-radius: 6%;
+
+    }
+
+    button:hover {
+        background: linear-gradient(150deg, rgb(202, 202, 202), rgb(129, 129, 129));
+
+    }
+
+    .box02 {
+        width: auto;
+        height: 100px;
+        /* border: solid white 1px; */
+
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .box02 .left{
+        width: auto;
+        height: 100px;
+        /* border: solid white 1px; */
+    }
+    .box02 .center{
+        width: auto;
+        height: 100px;
+        /* border: solid white 1px; */
+    }
+    
+    .box02 .right{
+        width: auto;
+        height: 100px;
+        /* border: solid white 1px; */
+    }
+
+    .box03 {
+        position:relative;
+        width: auto;
+        height: 200px;
+        /* border: solid white 1px; */
+
+        /* display: flex;
+        justify-content: space-around; */
+
+    }
+    #rn {
+        width: 160px;
+        height: 20px;
+        background-color: white;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+    #new_svr {
+        position: absolute;
+        top:80px;
+        left:50%;
+        transform: translateX(-50%);
+    }
+    
+    p {
+        margin-top: 10px;
+        text-align: center;
+        color: white;
+        font-size: 12px;
+    }
+    
+    .bl {
+        width:auto;
+        height:800px;
+    }
+
+    .kuro{
+        position:absolute;
+        z-index: 200;
+        animation-name: myfadeOut;
+        animation-duration: 10s;
+        opacity:0;
+        pointer-events: none;
+    }
+
+    @keyframes myfadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="bl">
+        <img class='kuro' src="img/kuro.jpg" alt="">
+        <div class="imgbox">
+            <img src="img/logo2.png" alt="">
+        </div>
+        <h1>TAMA_TAMA</h1>
+        <h2 id='in_name'>INPUT YOUR NAME</h2>
+        <input type="text" id="un">
+        <h2>SELECT SERVER</h2>
+        <div class="box01">
+            <button id="svr01">SERVER 1</button>
+            <button id="svr02">SERVER 2</button>
+            <button id="svr03">SERVER 3</button>
+        </div>
+        <div class="box02">
+            <div class="left">
+                <p>PLAYER 1: <span id="S1P1"></span></p>
+                <p>PLAYER 2: <span id="S1P2"></span></p>
+                <p>AUDIENCE: <span id="S1P3"></span></p>
+            </div>
+            <div class="center">
+                <p>PLAYER 1: <span id="S2P1"></span></p>
+                <p>PLAYER 2: <span id="S2P2"></span></p>
+                <p>AUDIENCE: <span id="S2P3"></span></p>
+            </div>
+            <div class="right">
+                <p>PLAYER 1: <span id="S3P1"></span></p>
+                <p>PLAYER 2: <span id="S3P2"></span></p>
+                <p>AUDIENCE: <span id="S3P3"></span></p>
+            </div>
+        </div>
+        <div class="box03">
+            <h2>MAKE A NEW ROOM</h2>
+            <input type="text" id="rn" placeholder="room name">
+            <button id="new_svr">new ROOM</button>
+    
+        </div>
+    </div>
+
+    <audio id="sound-file0" preload="auto">
+        <source src="bgm/button.mp3" type="audio/mp3">
+    </audio>
+    <audio id="sound-file1" preload="auto">
+        <source src="bgm/bouken.wav" type="audio/wav">
+    </audio>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--** 以下Firebase **-->
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase.js"></script>
+    
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyApIYJ-VOv5OIIgCorF5OrJngewgn85LQU",
+            authDomain: "gslab11-aa564.firebaseapp.com",
+            projectId: "gslab11-aa564",
+            storageBucket: "gslab11-aa564.appspot.com",
+            messagingSenderId: "209017578737",
+            appId: "1:209017578737:web:90b7acab588bfba6a57550"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const NUM_SERVER = 3;
+
+        for(let i=1;i<=NUM_SERVER;i++){
+            for(let j=1;j<=NUM_SERVER;j++){
+                let SVR = 'Server0' + i;
+                let PL = 'player0'+j;
+                const SP = '#S' + i + 'P' + j;
+                if(j<=2){
+                    db.ref(SVR + '/' + PL).on('value', function (data) {
+                        const v = data.val();
+                        if (!v) {
+                            $(SP).html('absent')
+                        } else {
+                            $(SP).html(v.name)
+                        }
+                    })
+                }
+                if(j==3){
+                    db.ref(SVR+'/'+PL).on('value', function(data){
+                        const v = data.val();
+                        if(!v){
+                            $(SP).html(0+'人')
+                        }else{
+                            let n=0
+                            for (let k = 0; k < Object.keys(v).length; k++) {
+                                if(Object.values(v)[k]['prop']=='in'){
+                                    n += 1
+                                }
+                            }
+                            $(SP).html(n + '人')
+                        }
+                    })
+                } 
+            }
+        }
+        
+        $('#svr01, #svr02, #svr03').on('click',function(){  // 0,1,2になるようにHTMLを組み替えたり
+            const svr = $(this).index() + 1;
+            const user_name = $('#un').val();
+
+            name_judge(user_name, svr);
+        });
+
+        $('#new_svr').on('click', function () {
+            const svr = $('#rn').val();
+            const user_name = $('#un').val();
+            if(!svr){
+                alert('Please input new room name!');
+            }else if(svr=='Server01' || svr == 'Server02' || svr == 'Server03'){
+                alert("Please don't use this room name!");
+            }else{
+                name_judge(user_name, svr);
+            }
+        });
+
+        function sound(n) { // オーディをタグをまとめられなかったので、こちらで呼び出しを工夫
+            $('#sound-file'+n).get(0).play();
+        }
+
+        function name_judge(name, server){
+            if (name == 'absent') {
+                sound(1);
+                alert('absentはやめテェーーー！！！')
+            } else if (name.indexOf('=') != -1 || name.indexOf('?') != -1) {
+                sound(1);
+                alert('=とか？入れるのはやめテェーーー！！！')
+            } else if (name) {
+                sound(0);
+                setTimeout(function () {
+                    location.href = './ball_mod.html?n=' + name + '?s=Server0' + server;
+                }, 2 * 1000);
+            } else {
+                $('#in_name').css('color', 'red');
+                alert('Please input your name!');
+            }
+        }
+
+    </script>
+</body>
+</html>
